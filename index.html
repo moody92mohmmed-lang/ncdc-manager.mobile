@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>لوحة المدير للهاتف — NCDC</title>
+  <title>لوحة المدير للهاتف — NCDC v2</title>
   <meta name="theme-color" content="#0f172a" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -123,6 +123,7 @@ function render(){
         <div class="meta">الرقم: ${esc(m.ref||'غير محدد')}<br>الجهة: ${esc(m.party||'غير محدد')}<br>التاريخ: ${esc(m.date||'غير محدد')}</div>
       </div>
       <div class="actions">
+        <div style="grid-column:1/-1;color:#94a3b8;font-size:12px;font-weight:800">تعديل الحالة:</div>
         <select class="select" onchange="changeStatus('${m.id}',this.value)">
           <option value="new" ${st==='new'?'selected':''}>جديد</option>
           <option value="pending" ${st==='pending'?'selected':''}>قيد المعالجة</option>
@@ -145,7 +146,7 @@ async function changeStatus(id, val){
 }
 function toast(msg,bad=false){const t=document.createElement('div');t.className='toast'+(bad?' bad':'');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2200)}
 function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));}
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js?v=2').catch(()=>{});}
 </script>
 </body>
 </html>
