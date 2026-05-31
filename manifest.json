@@ -1,23 +1,11 @@
 {
-  "name": "لوحة المدير — NCDC",
+  "name": "NCDC Manager Mobile",
   "short_name": "NCDC Manager",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#07111f",
-  "theme_color": "#0F172A",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
   "dir": "rtl",
   "lang": "ar",
-  "icons": [
-    {
-      "src": "./icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "icons": []
 }
