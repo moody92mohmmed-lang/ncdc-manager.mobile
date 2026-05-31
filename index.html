@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>NCDC — تطبيق المدير للهاتف v4</title>
+  <title>NCDC — تطبيق المدير للهاتف v5</title>
   <meta name="theme-color" content="#0f172a" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="NCDC Manager" />
-  <link rel="manifest" href="manifest.json?v=4" />
+  <link rel="manifest" href="manifest.json?v=5" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -35,7 +35,6 @@
       <input id="pass" class="inp" type="password" placeholder="كلمة مرور المدير" onkeydown="if(event.key==='Enter')login()" />
       <button class="btn" onclick="login()">دخول المدير</button>
       <div id="loginErr" class="err hide">كلمة المرور غير صحيحة</div>
-      <div class="note">كلمة المرور الحالية: 1821992</div>
     </div>
   </div>
   <div id="app" class="hide">
@@ -93,7 +92,8 @@ function normalizeFileValue(v){
   if(!x) return '';
   if(x.startsWith('http') || x.startsWith('data:') || x.startsWith('blob:')) return x;
   if(x.length > 120 && /^[A-Za-z0-9+/=
-]+$/.test(x)) return 'data:image/jpeg;base64,' + x.replace(/\s/g,'');
+
+]+$/.test(x)) return 'data:image/jpeg;base64,' + x.replace(/\s/g,'');
   return x;
 }
 function getImageUrl(m){
@@ -129,7 +129,7 @@ function closeDetails(){ document.getElementById('detailsModal').classList.remov
 async function changeStatus(id, val, keepModal=false){ const m=mails.find(x=>x.id===id); if(!m)return; const archived = val==='archive'; const status = archived ? 'done' : val; try{ await db.collection(COLLECTION_NAME).doc(id).set({status, archived, statusUpdatedAt: firebase.firestore.FieldValue.serverTimestamp()}, {merge:true}); toast('تم تعديل الحالة بنجاح'); if(keepModal){ const fake={...m,status,archived}; document.getElementById('currentStatusBadge').innerHTML=badge(getStatus(fake)); } }catch(e){ console.error(e); toast('حدث خطأ أثناء تعديل الحالة',true); render(); } }
 function toast(msg,bad=false){const t=document.createElement('div');t.className='toast'+(bad?' bad':'');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2200)}
 function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));}
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js?v=4').catch(()=>{});}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js?v=5').catch(()=>{});}
 </script>
 </body>
 </html>
